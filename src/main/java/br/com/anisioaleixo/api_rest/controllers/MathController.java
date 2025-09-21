@@ -1,6 +1,8 @@
 package br.com.anisioaleixo.api_rest.controllers;
 
 import br.com.anisioaleixo.api_rest.excepition.UnsupportedMathOperationException;
+import br.com.anisioaleixo.api_rest.math.SimpleMath;
+import br.com.anisioaleixo.api_rest.request.converteres.NumberConverter;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -9,16 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/math")
 public class MathController {
 
+    private SimpleMath math = new SimpleMath();
+
     //Sum
     @RequestMapping("/sum/{numberOne}/{numberTwo}")
     public Double sum(
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return  convertToDouble(numberOne) + convertToDouble(numberTwo);
+        return  math.sum(
+                NumberConverter.convertToDouble(numberOne),
+                NumberConverter.convertToDouble(numberTwo)
+        );
     }
 
     //Subtraction
@@ -27,10 +34,13 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) - convertToDouble(numberTwo);
+        return math.subtraction(
+                NumberConverter.convertToDouble(numberOne),
+                NumberConverter.convertToDouble(numberTwo)
+        );
     }
 
     @RequestMapping("/multiplication/{numberOne}/{numberTwo}")
@@ -38,10 +48,13 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return convertToDouble(numberOne) * convertToDouble(numberTwo);
+        return math.multiplication(
+                NumberConverter.convertToDouble(numberOne),
+                NumberConverter.convertToDouble(numberTwo)
+        );
     }
 
     @RequestMapping("/division/{numberOne}/{numberTwo}")
@@ -49,14 +62,17 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        Double divisor = convertToDouble(numberTwo);
+        Double divisor = NumberConverter.convertToDouble(numberTwo);
         if (divisor == 0) {
             throw new UnsupportedMathOperationException("Division by zero is not allowed!");
         }
-        return convertToDouble(numberOne) / divisor;
+        return math.division(
+                NumberConverter.convertToDouble(numberOne),
+                divisor
+        );
     }
 
     // Média
@@ -65,40 +81,26 @@ public class MathController {
             @PathVariable String numberOne,
             @PathVariable String numberTwo
     ) throws Exception {
-        if (!isNumeric(numberOne) || !isNumeric(numberTwo)) {
+        if (!NumberConverter.isNumeric(numberOne) || !NumberConverter.isNumeric(numberTwo)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        return (convertToDouble(numberOne) + convertToDouble(numberTwo)) / 2;
+        return math.mean(
+                NumberConverter.convertToDouble(numberOne),
+                NumberConverter.convertToDouble(numberTwo)
+        );
     }
 
     @RequestMapping("/square-root/{number}")
     public Double squareRoot(
             @PathVariable String number
     ) throws Exception {
-        if (!isNumeric(number)) {
+        if (!NumberConverter.isNumeric(number)) {
             throw new UnsupportedMathOperationException("Please set a numeric value!");
         }
-        double value = convertToDouble(number);
+        double value = NumberConverter.convertToDouble(number);
         if (value < 0) {
             throw new UnsupportedMathOperationException("Cannot calculate square root of negative number!");
         }
-        return Math.sqrt(value);
+        return math.squareRoot(value);
     }
-
-    private Double convertToDouble(String strNumber) throws Exception {
-        if (strNumber == null || strNumber.isEmpty()) {
-            throw new UnsupportedMathOperationException("Please set a numeric value!");
-        }
-        String number = strNumber.replaceAll(",", ".");
-        return Double.parseDouble(number);
-    }
-
-    private boolean isNumeric(String strNumber) {
-        if (strNumber == null || strNumber.isEmpty()) {
-            return false;
-        }
-        String number = strNumber.replaceAll(",", ".");
-        return number.matches("[-+]?[0-9]*\\.?[0-9]+");
-    }
-
 }
