@@ -38,8 +38,6 @@ Thumbs.db
 
 ### Spring Boot ###
 /target/
-!**/src/main/**/target/
-!**/src/test/**/target/
 
 ### Local Files ###
 *.log
