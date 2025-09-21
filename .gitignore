@@ -1,0 +1,67 @@
+### Maven ###
+.mvn/wrapper/maven-wrapper.jar
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Gradle ###
+.gradle
+/build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### Eclipse ###
+.metadata/
+.classpath
+.project
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+
+### VS Code ###
+.vscode/
+
+### Operating System ###
+.DS_Store
+Thumbs.db
+
+### Spring Boot ###
+/target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Local Files ###
+*.log
+*.log.*
+/logs/
+/uploads/
+/temp/
+
+### Configuration ###
+src/main/resources/application.properties
+src/main/resources/application.yml
+!src/main/resources/application-dev.properties
+!src/main/resources/application-dev.yml
+!src/main/resources/application-prod.properties
+!src/main/resources/application-prod.yml
+
+### Dependency Management ###
+.m2/
+.idea_modules/
+.idea_workspace.xml
+.idea/workspace.xml
+.idea/libraries/
+.idea/jar_dependencies.xml
+.vscode-test/
+node_modules/
