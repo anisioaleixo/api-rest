@@ -2,6 +2,7 @@ package br.com.anisioaleixo.api_rest.services;
 
 import br.com.anisioaleixo.api_rest.model.Person;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +46,19 @@ public class PersonServices {
         person.setAddress("Some address in Brasil " + i);
         person.setGender((i % 2 == 0) ? "Male" : "Female");
         return person;
+    }
+
+    public Person created(Person person) {
+        logger.info("Creating one person!");
+        return person;
+    }
+
+    public Person update(Person person) {
+        logger.info("Updating  one person!");
+        return person;
+    }
+
+    public void delete(String id) {
+        logger.info("Deleting one person!");
     }
 }

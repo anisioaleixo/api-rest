@@ -3,10 +3,7 @@ package br.com.anisioaleixo.api_rest.controllers;
 import br.com.anisioaleixo.api_rest.model.Person;
 import br.com.anisioaleixo.api_rest.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +22,18 @@ public class PersonController {
     public Person findById(@PathVariable String id) {
         return services.findById(id);
     }
+
+    @PostMapping(produces = "application/json", consumes = "application/json")
+    public Person created(@RequestBody Person person) {
+        return services.created(person);
+    }
+
+    @PutMapping(produces = "application/json", consumes = "application/json")
+    public Person update(@RequestBody Person person) {
+        return services.update(person);
+    }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable String id) {}
 
 }
