@@ -1,12 +1,11 @@
 package br.com.anisioaleixo.api_rest.model;
 
 import jakarta.persistence.*;
-import jdk.jfr.Enabled;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-@Enabled
+@Entity
 @Table(name = "person")
 public class Person implements Serializable {
 
