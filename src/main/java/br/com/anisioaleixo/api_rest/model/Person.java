@@ -1,16 +1,31 @@
 package br.com.anisioaleixo.api_rest.model;
 
+import jakarta.persistence.*;
+import jdk.jfr.Enabled;
+
 import java.io.Serializable;
 import java.util.Objects;
 
+@Enabled
+@Table(name = "person")
 public class Person implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "first_name", nullable = false, length = 80)
     private String firstName;
+
+    @Column(name = "last_name", nullable = false, length = 80)
     private String lastName;
+
+    @Column(nullable = false, length = 100)
     private String address;
+
+    @Column(nullable = false, length = 6)
     private String gender;
 
     public Person() {}

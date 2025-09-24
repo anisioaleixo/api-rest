@@ -1,7 +1,8 @@
 package br.com.anisioaleixo.api_rest.excepition.handler;
 
 import br.com.anisioaleixo.api_rest.excepition.ExceptionResponse;
-import br.com.anisioaleixo.api_rest.excepition.UnsupportedMathOperationException;
+import br.com.anisioaleixo.api_rest.excepition.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,16 +21,16 @@ public class CustomEntityResponseHandler extends ResponseEntityExceptionHandler 
                 ex.getMessage(),
                 request.getDescription(false)
         );
-        return ResponseEntity.internalServerError().body(exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse,HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(UnsupportedMathOperationException.class)
-    public final ResponseEntity<ExceptionResponse> handlerBadRequestExcepition(Exception ex, WebRequest request) {;
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public final ResponseEntity<ExceptionResponse> handlerNotFoundExcepition(Exception ex, WebRequest request) {;
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new java.util.Date(),
                 ex.getMessage(),
                 request.getDescription(false)
         );
-        return ResponseEntity.badRequest().body(exceptionResponse);
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 }
