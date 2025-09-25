@@ -3,6 +3,7 @@ package br.com.anisioaleixo.api_rest.controllers;
 import br.com.anisioaleixo.api_rest.model.Person;
 import br.com.anisioaleixo.api_rest.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +25,9 @@ public class PersonController {
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")
-    public Person created(@RequestBody Person person) {
-        return services.created(person);
+    public ResponseEntity<Person> created(@RequestBody Person person) {
+        Person createdPerson = services.created(person);
+        return ResponseEntity.status(201).body(createdPerson);
     }
 
     @PutMapping(produces = "application/json", consumes = "application/json")
@@ -34,8 +36,9 @@ public class PersonController {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         services.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
