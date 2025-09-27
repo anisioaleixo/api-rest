@@ -1,6 +1,7 @@
 package br.com.anisioaleixo.api_rest.controllers;
 
-import br.com.anisioaleixo.api_rest.model.Person;
+import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
+import br.com.anisioaleixo.api_rest.data.DTO.V2.PersonDTOV2;
 import br.com.anisioaleixo.api_rest.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,29 +10,35 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api/person/v1")
 public class PersonController {
     @Autowired
     private PersonServices services;
 
     @GetMapping(produces = "application/json")
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         return services.findAll();
     }
 
     @GetMapping(value = "/{id}", produces = "application/json")
-    public Person findById(@PathVariable Long id) {
+    public PersonDTO findById(@PathVariable Long id) {
         return services.findById(id);
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")
-    public ResponseEntity<Person> created(@RequestBody Person person) {
-        Person createdPerson = services.created(person);
+    public ResponseEntity<PersonDTO> created(@RequestBody PersonDTO person) {
+        PersonDTO createdPerson = services.created(person);
+        return ResponseEntity.status(201).body(createdPerson);
+    }
+
+    @PostMapping(value = "/v2", produces = "application/json", consumes = "application/json")
+    public ResponseEntity<PersonDTOV2> createdv2(@RequestBody PersonDTOV2 person) {
+        PersonDTOV2 createdPerson = services.createdV2(person);
         return ResponseEntity.status(201).body(createdPerson);
     }
 
     @PutMapping(produces = "application/json", consumes = "application/json")
-    public Person update(@RequestBody Person person) {
+    public PersonDTO update(@RequestBody PersonDTO person) {
         return services.update(person);
     }
 

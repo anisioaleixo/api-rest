@@ -1,5 +1,5 @@
 package br.com.anisioaleixo.api_rest.unitetests.mapper.mocks;
-import br.com.anisioaleixo.api_rest.data.DTO.PersonDTO;
+import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
 import br.com.anisioaleixo.api_rest.model.Person;
 
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package br.com.anisioaleixo.api_rest.data.DTO;
+package br.com.anisioaleixo.api_rest.data.DTO.V1;
 
 import br.com.anisioaleixo.api_rest.model.Person;
 import java.util.Objects;
