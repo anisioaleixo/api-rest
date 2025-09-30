@@ -1,7 +1,6 @@
 package br.com.anisioaleixo.api_rest.controllers;
 
 import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
-import br.com.anisioaleixo.api_rest.data.DTO.V2.PersonDTOV2;
 import br.com.anisioaleixo.api_rest.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,12 +27,6 @@ public class PersonController {
     @PostMapping(produces = "application/json", consumes = "application/json")
     public ResponseEntity<PersonDTO> created(@RequestBody PersonDTO person) {
         PersonDTO createdPerson = services.created(person);
-        return ResponseEntity.status(201).body(createdPerson);
-    }
-
-    @PostMapping(value = "/v2", produces = "application/json", consumes = "application/json")
-    public ResponseEntity<PersonDTOV2> createdv2(@RequestBody PersonDTOV2 person) {
-        PersonDTOV2 createdPerson = services.createdV2(person);
         return ResponseEntity.status(201).body(createdPerson);
     }
 
