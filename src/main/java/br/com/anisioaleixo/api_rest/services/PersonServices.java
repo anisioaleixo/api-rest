@@ -1,7 +1,6 @@
 package br.com.anisioaleixo.api_rest.services;
 
 import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
-import br.com.anisioaleixo.api_rest.data.DTO.V2.PersonDTOV2;
 import br.com.anisioaleixo.api_rest.excepition.ResourceNotFoundException;
 import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseObject;
 import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseListObjects;
@@ -46,12 +45,6 @@ public class PersonServices {
         logger.info("Creating one person!");
         var entity = parseObject(person, Person.class);
         return parseObject(repository.save(entity), PersonDTO.class);
-    }
-
-    public PersonDTOV2 createdV2(PersonDTOV2 person) {
-        logger.info("Creating one person V2!");
-        var entity = personMapper.coverterDTOToEntity(person);
-        return personMapper.coverterEntityToDTO(repository.save(entity));
     }
 
     public PersonDTO update(PersonDTO person) {
