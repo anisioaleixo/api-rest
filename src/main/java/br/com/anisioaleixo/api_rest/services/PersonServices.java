@@ -22,9 +22,6 @@ public class PersonServices {
     private final AtomicLong counter = new AtomicLong();
 
     @Autowired
-    private PersonMapper personMapper;
-
-    @Autowired
     public PersonRepository repository;
 
     private Logger logger = LoggerFactory.getLogger(PersonServices.class.getName());
