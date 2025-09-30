@@ -1,17 +1,22 @@
 package br.com.anisioaleixo.api_rest.data.DTO.V1;
 
 import br.com.anisioaleixo.api_rest.model.Person;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import java.util.Objects;
 
+@JsonPropertyOrder({"id", "first_name", "last_name", "address"})
 public class PersonDTO {
-
 
     private static final long serialVersionUID = 1L;
 
     private Long id;
 
+    @JsonProperty("first_name")
     private String firstName;
 
+    @JsonProperty("last_name")
     private String lastName;
 
     private String address;
