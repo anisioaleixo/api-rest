@@ -1,6 +1,7 @@
 package br.com.anisioaleixo.api_rest.data.DTO.V1;
 
 import br.com.anisioaleixo.api_rest.model.Person;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -21,6 +22,7 @@ public class PersonDTO {
 
     private String address;
 
+    @JsonIgnore
     private String gender;
 
     public PersonDTO() {}
