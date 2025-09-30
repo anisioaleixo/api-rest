@@ -1,15 +1,8 @@
 package br.com.anisioaleixo.api_rest.mapper;
 
-import br.com.anisioaleixo.api_rest.data.DTO.V2.PersonDTOV2;
-import br.com.anisioaleixo.api_rest.model.Person;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
-
-@Service
 public class PersonMapper {
 
-    public PersonDTOV2 coverterEntityToDTO(Person person) {
+    /*public PersonDTOV2 coverterEntityToDTO(Person person) {
         PersonDTOV2 dto = new PersonDTOV2();
         dto.setId(person.getId());
         dto.setFirstName(person.getFirstName());
@@ -31,5 +24,5 @@ public class PersonMapper {
         person.setGender(dto.getGender());
 
         return person;
-    }
+    }*/
 }
