@@ -1,11 +1,12 @@
 package br.com.anisioaleixo.api_rest.controllers;
 
-import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
+import br.com.anisioaleixo.api_rest.data.DTO.PersonDTO;
 import br.com.anisioaleixo.api_rest.services.PersonServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,9 @@ public class PersonController {
 
     @GetMapping(value = "/{id}", produces = "application/json")
     public PersonDTO findById(@PathVariable Long id) {
-        return services.findById(id);
+        var person = services.findById(id);
+        person.setBirthDay(new Date());
+        return person;
     }
 
     @PostMapping(produces = "application/json", consumes = "application/json")

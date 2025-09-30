@@ -4,7 +4,7 @@ import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseObject;
 import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseListObjects;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
+import br.com.anisioaleixo.api_rest.data.DTO.PersonDTO;
 import br.com.anisioaleixo.api_rest.model.Person;
 import br.com.anisioaleixo.api_rest.unitetests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,11 +1,10 @@
 package br.com.anisioaleixo.api_rest.services;
 
-import br.com.anisioaleixo.api_rest.data.DTO.V1.PersonDTO;
+import br.com.anisioaleixo.api_rest.data.DTO.PersonDTO;
 import br.com.anisioaleixo.api_rest.excepition.ResourceNotFoundException;
 import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseObject;
 import static br.com.anisioaleixo.api_rest.mapper.ObjectMapper.parseListObjects;
 
-import br.com.anisioaleixo.api_rest.mapper.PersonMapper;
 import br.com.anisioaleixo.api_rest.model.Person;
 import br.com.anisioaleixo.api_rest.repository.PersonRepository;
 import org.slf4j.Logger;
