@@ -3,12 +3,14 @@ package br.com.anisioaleixo.api_rest.data.DTO;
 import br.com.anisioaleixo.api_rest.serializer.GenderSerializer;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.hateoas.RepresentationModel;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 //@JsonPropertyOrder({"id", "first_name", "last_name", "address"})
-public class PersonDTO {
+public class PersonDTO extends RepresentationModel<PersonDTO> implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

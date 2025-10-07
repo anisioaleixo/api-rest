@@ -43,7 +43,7 @@ public class PersonController {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_YAML_VALUE})
-    public ResponseEntity<PersonDTO> created(@RequestBody PersonDTO person) {
+    public ResponseEntity<PersonDTO> create(@RequestBody PersonDTO person) {
         PersonDTO createdPerson = services.created(person);
         return ResponseEntity.status(201).body(createdPerson);
     }
